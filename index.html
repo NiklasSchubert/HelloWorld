@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="assets/opensource/opensource.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/opensource/opensource.min.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <div class="site-header bg-tertiary">
-        <nav class="navbar navbar--mobile-row">
-            <ul>
-                <li class="is-active"><a href="#">One</a></li>
-                <li><a href="#">Two</a></li>
-                <li><a href="#">Three</a></li>
-            </ul>
-        </nav>
-    </div>
+  <body>
+    <header
+      style="background-image: url(assets/header.trans)"
+      class="stage stage-overlay stage-primary"
+    >
+      <h2 class="stage-heading">Opensource</h2>
+    </header>
+
     <div class="content-wrapper">
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="card__content">
-                    <h1 class="h5">Project 1</h1>
-                    <h2 class="subtitle">Last updated 23.03.2020</h2>
-                    <p>
-                        Copy text dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod. Copy text dolor
-                        sit
-                        amet, consetetur sadipscing elitr, sed diam nonumy eirmod. Copy text dolor sit amet, consetetur
-                        sadipscing elitr, sed diam nonumy eirmod. Copy text dolor sit amet, consetetur sadipscing elitr,
-                        sed
-                        diam nonumy eirmod. Copy text dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                        eirmod.
-                        Copy text dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.
-                    </p>
-                    <div class="text-right">
-                        <button class="btn btn--primary mar-top-large" type="submit">See more</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <h3 class="title">Repositories</h3>
+      <div class="card-wrapper"></div>
     </div>
 
     <script>
-        for (let i = 0; i < 50; i++) {
-            const element = document.getElementsByClassName('card');
-            const cloned = element[0].cloneNode(true);
-            document.getElementsByClassName('card-wrapper')[0].append(cloned)
-        }
-    </script>
-</body>
+      (async () => {
+        const user = "niklasschubert";
+        const request = await fetch(
+          "https://api.github.com/users/niklasschubert/repos"
+        );
+        const repos = await request.json();
+        const cardWrapper = document
+          .getElementsByClassName("card-wrapper")
+          .item(0);
 
+        for (const repo of repos) {
+          cardWrapper.innerHTML =
+            cardWrapper.innerHTML +
+            `
+          <div class="card">
+            <div class="card__content">
+                <h1 class="h5">${repo.name}</h1>
+                <h2 class="subtitle">Last updated ${new Date(
+                  repo.updated_at
+                ).toLocaleDateString()}</h2>
+                <p>${repo.description}</p>
+                <div class="text-right">
+                    <a href="${repo.html_url}">
+                        <button class="btn btn--primary mar-top-large" type="submit">
+                            See more
+                        </button>
+                    </a>
+                </div>
+            </div>
+          </div>
+          `;
+        }
+      })();
+    </script>
+  </body>
 </html>

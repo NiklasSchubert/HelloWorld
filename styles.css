@@ -34,3 +34,10 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.card__content {
+  display: grid;
+  grid-template-rows: min-content min-content 1fr min-content;
+  height: 100%;
+  box-sizing: border-box;
+}

@@ -23,9 +23,9 @@
 
     <script>
       (async () => {
-        const user = "niklasschubert";
+        const user = "volkswagen";
         const request = await fetch(
-          "https://api.github.com/users/niklasschubert/repos"
+          `https://api.github.com/users/${user}/repos`
         );
         const repos = await request.json();
         const cardWrapper = document

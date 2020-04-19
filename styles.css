@@ -8,6 +8,24 @@ body {
   grid-template-rows: min-content min-content 1fr;
 }
 
+header {
+  filter: grayscale(1);
+}
+
+nav {
+  top: 0 !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+nav ul {
+  display: flex !important;
+  flex-direction: row !important;
+}
+nav ul .spacer {
+  flex: 1 1 auto !important;
+}
+
 .content-wrapper .title {
   padding-left: 10%;
   padding-right: 10%;
@@ -46,4 +64,32 @@ body {
   display: grid;
   grid-template-columns: 1fr max-content max-content;
   gap: 8px;
+}
+
+/* opensource.min.css | file:///home/niklas/Dokumente/Code/volkswagen-pages/HelloWorld/assets/opensource/opensource.min.css */
+
+.navbar {
+  /* background-color: #1565c0; */
+  background-color: #004666 !important;
+}
+
+.navbar > ul > li.is-active:not(.has-sub) > a {
+  /* background-color: #003c8f; */
+  background-color: #037da6 !important;
+}
+
+.navbar > ul > li.is-active:hover > a,
+.navbar > ul > li.is-active > a,
+.navbar > ul > li.is-open:hover > a,
+.navbar > ul > li.is-open > a,
+.navbar > ul > li:hover > a,
+.navbar ul ul > li a {
+  /* background-color: #003c8f; */
+  background-color: #005475 !important;
+}
+
+.btn--primary,
+a.btn--primary {
+  /* background: #1565c0; */
+  background: #004666 !important;
 }

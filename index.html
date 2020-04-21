@@ -37,22 +37,31 @@
     </div>
 
     <script>
-      (async () => {
+      (async () => {        
         const categories = document.getElementsByClassName('category');
         let selectedCategory = 0;
         categories.item(selectedCategory).parentNode.classList.add('is-active');
+
+        const cardWrapper = document
+          .getElementsByClassName("card-wrapper")
+          .item(0);
 
         for (let i = 0; i < categories.length; i++) {
           const category = categories.item(i);
 
           category.addEventListener('click', (event) => {
-            for (let i = 0; i < categories.length; i++) {
-              const category2 = categories.item(i);
+            for (let j = 0; j < categories.length; j++) {
+              const category2 = categories.item(j);
               category2.parentNode.classList.remove('is-active');
-            
             }
-            
+
             category.parentNode.classList.add('is-active');
+            selectedCategory = i;
+
+            const filtered = repos.filter((value) => selectedCategory === 0);
+            console.log(filtered, selectedCategory);
+            
+            buildCards(filtered);
           });
         }
 
@@ -61,42 +70,39 @@
           `https://api.github.com/users/${user}/repos`
         );
         const repos = await request.json();
-        const cardWrapper = document
-          .getElementsByClassName("card-wrapper")
-          .item(0);
-        
-        console.log(repos);
-        
+        buildCards(repos);
 
-        for (const repo of repos) {
-          cardWrapper.innerHTML =
-            cardWrapper.innerHTML +
-            `
-          <div class="card">
-            <div class="card__content">
-                <div class="card-head">
-                    <h1 class="h5">${repo.name}</h1>
-                    <span><i class="icon i-star"></i>${
-                      repo.stargazers_count
-                    }</span>
-                    <span><i class="icon i-call-split"></i>${
-                      repo.forks_count
-                    }</span>
-                </div>
-                <h2 class="subtitle">Last updated ${new Date(
-                  repo.updated_at
-                ).toLocaleDateString()}</h2>
-                <p>${repo.description}</p>
-                <div class="text-right">
-                    <a href="${repo.html_url}">
-                        <button class="btn btn--primary mar-top-large" type="submit">
-                            See more
-                        </button>
-                    </a>
-                </div>
+        function buildCards(repoList) {
+          for (const repo of repoList) {
+            cardWrapper.innerHTML =
+              cardWrapper.innerHTML +
+              `
+            <div class="card">
+              <div class="card__content">
+                  <div class="card-head">
+                      <h1 class="h5">${repo.name}</h1>
+                      <span><i class="icon i-star"></i>${
+                        repo.stargazers_count
+                      }</span>
+                      <span><i class="icon i-call-split"></i>${
+                        repo.forks_count
+                      }</span>
+                  </div>
+                  <h2 class="subtitle">Last updated ${new Date(
+                    repo.updated_at
+                  ).toLocaleDateString()}</h2>
+                  <p>${repo.description}</p>
+                  <div class="text-right">
+                      <a href="${repo.html_url}">
+                          <button class="btn btn--primary mar-top-large" type="submit">
+                              See more
+                          </button>
+                      </a>
+                  </div>
+              </div>
             </div>
-          </div>
-          `;
+            `;
+          }
         }
       })();
     </script>

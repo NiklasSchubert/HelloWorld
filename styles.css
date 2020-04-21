@@ -22,8 +22,10 @@ nav ul {
   display: flex !important;
   flex-direction: row !important;
 }
+
 nav ul .spacer {
   flex: 1 1 auto !important;
+  max-width: unset !important;
 }
 
 .content-wrapper .title {

@@ -73,6 +73,7 @@
         buildCards(repos);
 
         function buildCards(repoList) {
+          cardWrapper.innerHTML = "";
           for (const repo of repoList) {
             cardWrapper.innerHTML =
               cardWrapper.innerHTML +

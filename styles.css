@@ -103,5 +103,5 @@ a.btn--primary {
 }
 
 .subtitle-wrapper .subtitle {
-  margin-top: 0;
+  margin-top: 0 !important;
 }

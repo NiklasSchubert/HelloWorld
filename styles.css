@@ -98,4 +98,10 @@ a.btn--primary {
 
 .subtitle-wrapper {
   display: grid;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.subtitle-wrapper .subtitle {
+  margin-bottom: 0;
 }

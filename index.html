@@ -88,7 +88,7 @@
             if (repo.fork) {
               const repoDataRequest = await fetch(repo.url);
               const repoData = await repoDataRequest.json();
-              forkedFrom = `<h2 class="subtitle">forked from <a href="${repoData.parent.html_url}">${repoData.parent.full_name}</a></h2>`;
+              forkedFrom = `<h2 class="subtitle">forked from <a href="${repoData.parent.html_url}" target="_blank">${repoData.parent.full_name}</a></h2>`;
             }
             cardWrapper.innerHTML =
               cardWrapper.innerHTML +

@@ -79,12 +79,16 @@
           `https://api.github.com/users/${user}/repos`
         );
         const repos = await request.json();
-        buildCards(repos);
+        await buildCards(repos);
 
-        function buildCards(repoList) {
+        async function buildCards(repoList) {
           cardWrapper.innerHTML = "";
           for (const repo of repoList) {
-            console.log(repo);
+            let forkedFrom = "";
+            if (repo.fork) {
+              const repoData = await fetch(repo.url);
+              forkedFrom = `<h2 class="subtitle">forked from ${repoData.parent.full_name}</h2>`;
+            }
             cardWrapper.innerHTML =
               cardWrapper.innerHTML +
               `
@@ -99,9 +103,12 @@
                         repo.forks_count
                       }</span>
                   </div>
-                  <h2 class="subtitle">Last updated ${new Date(
-                    repo.updated_at
-                  ).toLocaleDateString()}</h2>
+                  <div class="subittle-wrapper">
+                    ${forkedFrom}
+                    <h2 class="subtitle">Last updated ${new Date(
+                      repo.updated_at
+                    ).toLocaleDateString()}</h2>
+                  </div>
                   <p>${repo.description}</p>
                   <div class="text-right">
                       <a href="${repo.html_url}">

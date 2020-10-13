@@ -95,3 +95,10 @@ a.btn--primary {
   /* background: #1565c0; */
   background: #004666 !important;
 }
+
+.subtitle-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  justify-content: space-between;
+}

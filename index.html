@@ -86,7 +86,8 @@
           for (const repo of repoList) {
             let forkedFrom = "";
             if (repo.fork) {
-              const repoData = await fetch(repo.url);
+              const repoDataRequest = await fetch(repo.url);
+              const repoData = await repoDataRequest.json();
               forkedFrom = `<h2 class="subtitle">forked from ${repoData.parent.full_name}</h2>`;
             }
             cardWrapper.innerHTML =
@@ -102,7 +103,7 @@
                       <span><i class="icon i-call-split"></i>${
                         repo.forks_count
                       }</span>
-                  </div>
+                  </div>A
                   <div class="subittle-wrapper">
                     ${forkedFrom}
                     <h2 class="subtitle">Last updated ${new Date(

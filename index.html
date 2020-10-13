@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="assets/opensource/opensource.min.css" />
-    <title>Document</title>
+    <title>Volkswagen AG Open Source</title>
   </head>
 
   <body>
@@ -13,7 +13,7 @@
       style="background-image: url(assets/header.trans)"
       class="stage stage-overlay stage-primary"
     >
-      <h2 class="stage-heading">Volkswagen Opensource</h2>
+      <h2 class="stage-heading">Volkswagen AG Open Source</h2>
     </header>
 
     <nav class="navbar">
@@ -26,7 +26,16 @@
         <li><a class="category" id="5">Machine Learning</a></li>
         <li class="spacer"></li>
         <li>
-          <a href="https://www.volkswagenag.com/en/meta/provider-identification.html">Imprint</a>
+          <a
+            href="https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-privacy-statement"
+            >GDPR</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.volkswagenag.com/en/meta/provider-identification.html"
+            >Imprint</a
+          >
         </li>
       </ul>
     </nav>
@@ -37,10 +46,10 @@
     </div>
 
     <script>
-      (async () => {        
-        const categories = document.getElementsByClassName('category');
+      (async () => {
+        const categories = document.getElementsByClassName("category");
         let selectedCategory = 0;
-        categories.item(selectedCategory).parentNode.classList.add('is-active');
+        categories.item(selectedCategory).parentNode.classList.add("is-active");
 
         const cardWrapper = document
           .getElementsByClassName("card-wrapper")
@@ -49,18 +58,18 @@
         for (let i = 0; i < categories.length; i++) {
           const category = categories.item(i);
 
-          category.addEventListener('click', (event) => {
+          category.addEventListener("click", (event) => {
             for (let j = 0; j < categories.length; j++) {
               const category2 = categories.item(j);
-              category2.parentNode.classList.remove('is-active');
+              category2.parentNode.classList.remove("is-active");
             }
 
-            category.parentNode.classList.add('is-active');
+            category.parentNode.classList.add("is-active");
             selectedCategory = i;
 
             const filtered = repos.filter((value) => selectedCategory === 0);
             console.log(filtered, selectedCategory);
-            
+
             buildCards(filtered);
           });
         }
